@@ -27,11 +27,11 @@ getResult方法固定返回一个通用数组
         ->setBody(
             '20201225172329',   //$serialNo                 流水号
             '98',               //$amount                   转账金额
-            '6225162419311332', //$adversaryAccount         对方账户
-            '浦发1942595414',    //$adversaryAccountName     对方账户名称
+            '8888888888888888', //$adversaryAccount         对方账户
+            '浦发6666666666',    //$adversaryAccountName     对方账户名称
             0,                  //$crossLineSign            跨行标志 0:我行 1:他行
             1,                  //$adversaryType            对手类型 0对公 1对私
-            '运费'               //$note                     备注
+            '备注'               //$note                     备注
         )
         ->send()
         ->getResult();
@@ -48,17 +48,17 @@ getResult方法固定返回一个通用数组
             "body": {
                 "sic": {
                     "body": {
-                        "projectNumber": "99000135",
-                        "costItemCode": "91205",
+                        "projectNumber": "88888888",
+                        "costItemCode": "88888",
                         "transTypeCode": "2",
                         "elecChequeNo": "20201225172329",
-                        "adversaryAccount": "6225162419311332",
-                        "adversaryAccountName": "浦发1942595414",
+                        "adversaryAccount": "888888888888888888",
+                        "adversaryAccountName": "浦发",
                         "currency": "CNY",
                         "amount": "98",
                         "handleDate": "20201225",
-                        "payChannelJnl": "999550030007",
-                        "handleSeqNo": "05022012251736170000000008471054",
+                        "payChannelJnl": "8888888888888888",
+                        "handleSeqNo": "88888888888888888888888888888888",
                         "handleResult": "0"
                     }
                 },
@@ -67,7 +67,7 @@ getResult方法固定返回一个通用数组
                 "issuer": "CN=CFCA TEST OCA1,O=China Financial Certification Authority,C=CN",
                 "starttime": "Feb 19 02:45:26 2020 GMT",",=shanghai,ST=shanghai,C=CN",
                 "endtime": "Feb 19 02:45:26 2021 GMT",ity,C=CN",ncial Certification Authority,C=CN",
-                "certsn": "1038932429"
+                "certsn": "666666666"
             }
         }
     }
@@ -77,7 +77,7 @@ getResult方法固定返回一个通用数组
     $res = $obj->singleQuery()
         ->setBody(
             '20201225172329',   //$serialNo   流水号
-            '20201225'          //$amount     转账金额
+            '20201225'          //$transDate  转账日期
         )
         ->send()
         ->getResult();
@@ -94,16 +94,16 @@ getResult方法固定返回一个通用数组
             "body": {
                 "sic": {
                     "body": {
-                        "projectNumber": "99000135",
-                        "costItemCode": "91205",
+                        "projectNumber": "88888888",
+                        "costItemCode": "88888",
                         "transDate": "20201227",
                         "handleDate": "20201225",
-                        "adversaryAccount": "6225162419311332",
-                        "adversaryAccountName": "浦发1942595414",
+                        "adversaryAccount": "888888888888888888",
+                        "adversaryAccountName": "浦发",
                         "amount": "98.00",
                         "elecChequeNo": [],
-                        "originalPayChannelJnl": "999550030007",
-                        "handleSeqNo": "05022012251736170000000008471054",8471054",
+                        "originalPayChannelJnl": "8888888888888888",
+                        "handleSeqNo": "8888888888888888888888888888",88888888",
                         "handleResult": "0",
                         "failureMsg": "查询结果：该笔交易已经成功",
                         "note": [],
@@ -130,16 +130,16 @@ getResult方法固定返回一个通用数组
                         'crossLineSign' => 0,                       //是否跨行 0同行 1跨行
                         'adversaryType' => 1,                       //收付款人对公对私标志0:对公 1:对私
                         'adversaryAccountType' => 1,                //银行卡卡类型0：对公帐号 1：卡
-                        'adversaryAccount' => '6225162419311332',   //对方账号
-                        'adversaryAccountName' => '浦发1942595414',  //对方账户名
+                        'adversaryAccount' => '8888888888888888',   //对方账号
+                        'adversaryAccountName' => '浦发8888888888',  //对方账户名
                         'amount' => 100.00                          //金额
                     ],
                     [
                         'crossLineSign' => 0,                       //是否跨行 0同行 1跨行
                         'adversaryType' => 1,                       //收付款人对公对私标志0:对公 1:对私
                         'adversaryAccountType' => 1,                //银行卡卡类型0：对公帐号 1：卡
-                        'adversaryAccount' => '6225162419311332',   //对方账号
-                        'adversaryAccountName' => '浦发1942595414',  //对方账户名
+                        'adversaryAccount' => '8888888888888888',   //对方账号
+                        'adversaryAccountName' => '浦发8888888888',  //对方账户名
                         'amount' => 200.00                          //金额
                     ]
                 ],                      //$data        交易数据
