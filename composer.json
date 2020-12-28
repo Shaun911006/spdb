@@ -13,8 +13,7 @@
         "ext-json": "*",
         "ext-simplexml": "*",
         "ext-curl": "*",
-        "ext-iconv": "*",
-        "ext-mbstring": "*"
+        "ext-iconv": "*"
     },
     "autoload":{
         "psr-4" :{
