@@ -1,14 +1,20 @@
 浦发银行银企直联对接项目
 
 ##使用方法
+
 #####创建对象
+
     $obj = new SpdBank();   //创建对象
+    
 #####请求过程
+
     $obj->singlePayment();  //根据业务选择方法如单笔转账singlePayment
         ->setBody('','','') //设置报文的body体(设置后会自动请求签名接口加密)
         ->send()            //发送业务报文（成功后 $obj->return 可查看返回的原始报文）
         ->getResult()       //解析返回的报文，如果成功会请求验签接口将返回的业务报文解密后放到data中
+        
 #####返回结果
+
 getResult方法固定返回一个通用数组 
 
     code 默认9999999，返回AAAAAAA为业务请求成功，具体返回参数可在data中查看
@@ -16,6 +22,7 @@ getResult方法固定返回一个通用数组
     data 业务请求结果的详细数据
     
 ###1.1 单笔转账 singlePayment
+
     $res = $obj->singlePayment()
         ->setBody(
             '20201225172329',   //$serialNo                 流水号
@@ -64,7 +71,9 @@ getResult方法固定返回一个通用数组
             }
         }
     }
+    
 ##1.2 单笔转账查询 singleQuery
+
     $res = $obj->singleQuery()
         ->setBody(
             '20201225172329',   //$serialNo   流水号
@@ -110,7 +119,9 @@ getResult方法固定返回一个通用数组
             }
         }
     }
+    
 ##2.1 批量代收付交易 batchPayment
+
         $res = $obj->batchPayment()
             ->setBody(
                 '20201225172329',       //$serialNo    流水号
