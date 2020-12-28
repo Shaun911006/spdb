@@ -1,0 +1,25 @@
+{
+    "name": "shaun/spdb",
+    "description": "浦发银行接口",
+    "authors": [
+        {
+            "name": "Shaun Yang",
+            "email": "870585669@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.3",
+        "ext-libxml": "*",
+        "ext-json": "*",
+        "ext-simplexml": "*",
+        "ext-curl": "*",
+        "ext-iconv": "*",
+        "ext-mbstring": "*"
+    },
+    "autoload":{
+        "psr-4" :{
+            "spdb\\":"src/"
+        }
+    },
+    "license":"MIT"
+}
