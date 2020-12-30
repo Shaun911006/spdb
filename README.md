@@ -192,4 +192,5 @@ getResult方法固定返回一个通用数组
     {"res":false,"msg":"原因说明"}
     
 ##2.2 批量代收付多批次明细结果查询交易 batchQueryByDate
+
 ##2.3 批量代收付单批次明细结果查询交易 batchQuery
