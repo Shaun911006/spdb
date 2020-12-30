@@ -71,6 +71,11 @@ getResult方法固定返回一个通用数组
             }
         }
     }
+    //获取结果最终结果
+    $res = $obj->$obj->singlePayment()->getResult($res);
+    dump($res);
+    {"res":true,"msg":""}
+    {"res":false,"msg":"原因说明"}
     
 ##1.2 单笔转账查询 singleQuery
 
@@ -119,34 +124,72 @@ getResult方法固定返回一个通用数组
             }
         }
     }
+    //获取结果最终结果
+    $res = $obj->$obj->singleQuery()->getResult($res);
+    dump($res);
+    {"code":1,"msg":"查询结果：该笔交易已经成功"}
+    {"code":0,"msg":"失败原因"}
+    {"code":2,"msg":"处理中"}
     
 ##2.1 批量代收付交易 batchPayment
 
-        $res = $obj->batchPayment()
-            ->setBody(
-                '20201225172329',       //$serialNo    流水号
+    $res = $obj->batchPayment()
+        ->setBody(
+            '20201225172329',       //$serialNo    流水号
+            [
                 [
-                    [
-                        'crossLineSign' => 0,                       //是否跨行 0同行 1跨行
-                        'adversaryType' => 1,                       //收付款人对公对私标志0:对公 1:对私
-                        'adversaryAccountType' => 1,                //银行卡卡类型0：对公帐号 1：卡
-                        'adversaryAccount' => '8888888888888888',   //对方账号
-                        'adversaryAccountName' => '浦发8888888888',  //对方账户名
-                        'amount' => 100.00                          //金额
-                    ],
-                    [
-                        'crossLineSign' => 0,                       //是否跨行 0同行 1跨行
-                        'adversaryType' => 1,                       //收付款人对公对私标志0:对公 1:对私
-                        'adversaryAccountType' => 1,                //银行卡卡类型0：对公帐号 1：卡
-                        'adversaryAccount' => '8888888888888888',   //对方账号
-                        'adversaryAccountName' => '浦发8888888888',  //对方账户名
-                        'amount' => 200.00                          //金额
-                    ]
-                ],                      //$data        交易数据
-                '000001',               //$batchNo     批次编号
-                '运费'                   //$note        备注
-            )
-            ->send()
-            ->getResult();
-        dump($res);
-        //返回示例（实际为数组）
+                    'crossLineSign' => 0,                       //是否跨行 0同行 1跨行
+                    'adversaryType' => 1,                       //收付款人对公对私标志0:对公 1:对私
+                    'adversaryAccountType' => 1,                //银行卡卡类型0：对公帐号 1：卡
+                    'adversaryAccount' => '8888888888888888',   //对方账号
+                    'adversaryAccountName' => '浦发8888888888',  //对方账户名
+                    'amount' => 100.00                          //金额
+                ],
+                [
+                    'crossLineSign' => 0,                       //是否跨行 0同行 1跨行
+                    'adversaryType' => 1,                       //收付款人对公对私标志0:对公 1:对私
+                    'adversaryAccountType' => 1,                //银行卡卡类型0：对公帐号 1：卡
+                    'adversaryAccount' => '8888888888888888',   //对方账号
+                    'adversaryAccountName' => '浦发8888888888',  //对方账户名
+                    'amount' => 200.00                          //金额
+                ]
+            ],                      //$data        交易数据
+            '000001',               //$batchNo     批次编号
+            '运费'                   //$note        备注
+        )
+        ->send()
+        ->getResult();
+    dump($res);
+    //返回示例（实际为数组）
+    {
+        "head": {
+            "title": "验签名结果",
+            "result": "0"
+        },
+        "body": {
+            "sic": {
+                "body": {
+                    "projectNumber": "99000135",
+                    "costItemCode": "91205",
+                    "transTypeCode": "2",
+                    "elecChequeNo": "202012301032561517",
+                    "handleSeqNo": "05022020123000091834",
+                    "handleDate": "20201230"
+                }
+            },
+            "cert": "MIIDpDCCAoygAwIBAgIFEDiTJCkwDQYJKoZIhv...",
+            "certdn": "CN=etest2.spdb.com.cn,O=SPDB,L=shanghai,ST=shanghai,C=CN",
+            "issuer": "CN=CFCA TEST OCA1,O=China Financial Certification Authority,C=CN",
+            "starttime": "Feb 19 02:45:26 2020 GMT",
+            "endtime": "Feb 19 02:45:26 2021 GMT",
+            "certsn": "1038932429"
+        }
+    }
+     //获取结果最终结果
+    $res = $obj->$obj->batchPayment()->getResult($res);
+    dump($res);
+    {"res":true,"msg":""}
+    {"res":false,"msg":"原因说明"}
+    
+##2.2 批量代收付多批次明细结果查询交易 batchQueryByDate
+##2.3 批量代收付单批次明细结果查询交易 batchQuery

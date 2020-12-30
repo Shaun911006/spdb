@@ -36,10 +36,10 @@ class AQ54
             'projectName' => $this->client->conf['projectName'],
             'costItemCode' => $this->client->conf['costItemCode'],
             'transTypeCode' => '2',  //交易类型编码 1代收2代付
-            'elecChequeNo' => $serialNo,
-            'handleSeqNo' => '',
+            'electronNumber' => $serialNo,
             'transDate' => $transDate, //起始日期
-        ];
+            'handleSeqN' => '',
+       ];
 
         $this->signature = $this->client->getSign($body);
         $this->setHead();

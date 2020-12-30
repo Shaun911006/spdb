@@ -5,6 +5,7 @@
  * Time:下午5:50
  * Description:
  */
+
 namespace spdb\business;
 
 use spdb\SpdBank;
@@ -28,7 +29,7 @@ class AQ50
      * @param string $originalTransDate 交易发生日期（YYYYMMDD）
      * @return SpdBank
      */
-    public function setBody($serialNo,$originalTransDate)
+    public function setBody($serialNo, $originalTransDate)
     {
         $body            = [
             'transMasterID' => $this->client->conf['transMasterID'],
@@ -61,5 +62,31 @@ class AQ50
             'signature' => $this->signature
         ];
         $this->client->wholeMsg = XmlTools::encode($this->head, $signBody);
+    }
+
+    public function getResult($resultArray)
+    {
+        //返回的结果 0失败 1成功 2处理中 3异常
+        if ($resultArray['code'] == 'AAAAAAA') {
+            //判断handleResult
+            if (
+                isset($resultArray['data']['body'])
+                && isset($resultArray['data']['body']['sic'])
+                && isset($resultArray['data']['body']['sic']['body'])
+                && isset($resultArray['data']['body']['sic']['body']['handleResult'])
+            ) {
+                if ($resultArray['data']['body']['sic']['body']['handleResult'] == 0) {
+                    return ['code' => 1,'msg' => $resultArray['data']['body']['sic']['body']['failureMsg']];
+                } elseif ($resultArray['data']['body']['sic']['body']['handleResult'] == 1) {
+                    return ['code' => 0,'msg' => $resultArray['data']['body']['sic']['body']['failureMsg']];
+                } else {
+                    return ['code'=>2,'msg' => ''];
+                }
+            } else{
+                return ['code'=>2,'msg' => ''];
+            }
+        } else {
+            return ['code'=>2,'msg' => ''];
+        }
     }
 }

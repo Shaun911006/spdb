@@ -43,7 +43,7 @@ class AQ52
             $totalNumber++;
             $totalAmount += round($v['amount'], 2);
             //明细序号|是否浦发账户|收付款人对公对私标志|银行卡卡类型|对方账号|对方账户名|证件类型|证件号码|对手行行号|对手行行名|支付行号|币种|金额|手机号|企业流水号|备用信息|企业分支机构|摘要|备注|备用1|备用2|备用3
-            $detailedContent[] = str_pad($k, 8, '0',STR_PAD_LEFT) . '|' . $v['crossLineSign'] . '|' . $v['adversaryType'] . '|' . $v['adversaryAccountType'] . '|' . $v['adversaryAccount'] . '|' . $v['adversaryAccountName'] . '||||||||' . round($v['amount'], 2) . '|||||' . $note . '|' . $note . '|||';
+            $detailedContent[] = str_pad($k, 8, '0',STR_PAD_LEFT) . '|' . $v['crossLineSign'] . '|' . $v['adversaryType'] . '|' . $v['adversaryAccountType'] . '|' . $v['adversaryAccount'] . '|' . $v['adversaryAccountName'] . '|||||||' . round($v['amount'], 2) . '||||||' . $note . '|' . $note . '||';
         }
 
         $body = [
@@ -90,5 +90,14 @@ class AQ52
             'signature' => $this->signature
         ];
         $this->client->wholeMsg = XmlTools::encode($this->head, $signBody);
+    }
+
+    public function getResult($resultArray)
+    {
+        if ($resultArray['code'] == 'AAAAAAA') {
+            return ['res' => true, 'msg' => $resultArray['msg']];
+        } else {
+            return ['res' => false, 'msg' => $resultArray['msg']];
+        }
     }
 }

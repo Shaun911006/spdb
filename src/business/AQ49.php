@@ -86,4 +86,13 @@ class AQ49
         ];
         $this->client->wholeMsg = XmlTools::encode($this->head, $signBody);
     }
+
+    public function getResult($resultArray)
+    {
+        if ($resultArray['code'] == 'AAAAAAA') {
+            return ['res' => true, 'msg' => $resultArray['msg']];
+        } else {
+            return ['res' => false, 'msg' => $resultArray['msg']];
+        }
+    }
 }
